@@ -1,0 +1,28 @@
+branches:
+  only:
+    - build
+
+language: bash
+
+before_script:
+  - git checkout build
+  - ls
+  - cat class5.cpp
+  - g++ class5.cpp
+
+script:
+  - ./a.out >> temp.txt
+  - cat temp.txt
+
+after_success:
+  - cat temp.txt >> README.md
+  - rm -f temp.txt a.out
+  - echo "" >> README.md
+  - echo "抽取时间：" >> README.md
+  - date >> README.md
+  - echo "" >> README.md
+  - git add -A
+  - git commit -m "[CI] Upload results, $(date)"
+  - git log  
+  - git push https://bobby285271:${passwd}@github.com/bobby285271/class5-speech-sort.git build:master --force
+
