@@ -29,7 +29,7 @@ int main()
     a[3].m = a[2].m;       //第三组演讲过了。
     sort(a + 1, a + 12, cmp);
     //for (int i = 1; i < 11; i++)
-    cout << endl << "### 测试" << endl;
+    cout << endl << "### 思修话题三第一次演讲" << endl;
     cout << "抽取结果：" << a[1].n << " ";
     cout << endl;
     return 0;
