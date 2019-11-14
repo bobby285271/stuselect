@@ -30,7 +30,7 @@ int main()
     a[11].m = a[2].m;        //第十一组演讲过了。
     sort(a + 1, a + 12, cmp);
     //for (int i = 1; i < 11; i++)
-    cout << endl << "### 思修演讲（话题三话题四二选一） << endl;
+    cout << endl << "### 思修演讲（话题三话题四二选一）" << endl;
     cout << "抽取结果：" << a[1].n << " ";
     cout << endl;
     return 0;
