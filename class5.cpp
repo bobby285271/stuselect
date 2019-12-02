@@ -16,24 +16,18 @@ bool cmp(class5 a, class5 b)
 int main()
 {
 
-    class5 a[12];
+    class5 a[15];
     srand((unsigned)time(NULL));
-    for (int i = 1; i < 12; i++)
+    for (int i = 1; i < 13; i++)
     {
         a[i].m = rand();
         a[i].n = i;
     }
-    a[2].m = a[6].m - 1;    //第二组演讲过了。
-    a[1].m = a[2].m;        //第一组演讲过了。
-    a[10].m = a[2].m;       //第十组演讲过了。
-    a[3].m = a[2].m;        //第三组演讲过了。
-    a[11].m = a[2].m;        //第十一组演讲过了。
-    a[9].m = a[2].m;        //第九组演讲过了。
-    a[7].m = a[2].m;        //第七组演讲过了。
-    sort(a + 1, a + 12, cmp);
-    //for (int i = 1; i < 11; i++)
-    cout << endl << "### 思修演讲（话题 5）" << endl;
-    cout << "抽取结果：" << a[1].n << " ";
+    sort(a + 1, a + 13, cmp);
+    cout << endl << "### 测试" << endl;
+    cout << "抽取结果：" << " ";
+    for (int i = 1; i < 13; i++)
+        cout << a[i].n << " ";
     cout << endl;
     return 0;
 }
