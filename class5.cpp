@@ -24,7 +24,7 @@ int main()
         a[i].n = i;
     }
     sort(a + 1, a + 13, cmp);
-    cout << endl << "### 测试" << endl;
+    cout << endl << "### 计算机基础实验演讲顺序" << endl;
     cout << "抽取结果：" << " ";
     for (int i = 1; i < 13; i++)
         cout << a[i].n << " ";
