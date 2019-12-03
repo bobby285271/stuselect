@@ -73,7 +73,7 @@ int main()
     a[48].n = "陈芷茵";
     a[49].n = "王凯峰";
     sort(a + 1, a + 50, cmp);
-    cout << endl << "### 评分人员抽取 - 以下结果仅用于测试非最终结果" << endl;
+    cout << endl << "### 评分人员抽取 - 正式抽取结果" << endl;
     cout << "抽取结果：" << " ";
     for (int i = 1; i < 5; i++)
         cout << a[i].n << " ";
