@@ -76,9 +76,9 @@ int main()
     a[51].n = "王明生";
     a[52].n = "容加林";
     sort(a + 1, a + 53, cmp);
-    cout << endl << "### 10 月 20 日正式抽签" << endl;
+    cout << endl << "### Linux 师生交流会正式抽签" << endl;
     cout << "抽取结果：" << " ";
-    for (int i = 1; i <= 5; i++)
+    for (int i = 1; i <= 3; i++)
         cout << a[i].n << " ";
     cout << endl;
     return 0;
