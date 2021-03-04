@@ -21,9 +21,23 @@ namespace Stuselect {
 	public class Window : Gtk.ApplicationWindow {
 		[GtkChild]
 		Gtk.Label label;
+		[GtkChild]
+		Gtk.Button start_btn;
+		[GtkChild]
+		Gtk.Button clear_btn;
+		[GtkChild]
+		Gtk.CheckButton male_check;
+		[GtkChild]
+		Gtk.CheckButton female_check;
+
+        Students stu = new Students();
 
 		public Window (Gtk.Application app) {
 			Object (application: app);
+
+			start_btn.clicked.connect (() => {
+			    /* TODO */
+		    });
 		}
 	}
 }
