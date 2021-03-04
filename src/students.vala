@@ -16,4 +16,146 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Stuselect {
+
+    public class Students : GLib.Object {
+        private struct student {
+            public string name;
+            public int ismale;
+            public int val;
+            public student (string name) {
+                this.name = name;
+                this.ismale = 1;
+                this.val = 0;
+            }
+        }
+
+        private int cnt;
+        private const int GIRLS = 11;
+
+        private student?[] s = {
+            student("姜文婷"),
+            student("蔡卓琳"),
+            student("黄贝苗"),
+            student("李晓芳"),
+            student("林芷泳"),
+            student("邓子曼"),
+            student("曾宇璐"),
+            student("陈佳茵"),
+            student("陈芷茵"),
+            student("李晓钰"),
+            student("陈晓琪"),
+            student("李玮楠"),
+            student("商汇川"),
+            student("沈德增"),
+            student("王凯峰"),
+            student("陈锦川"),
+            student("黄俊"),
+            student("徐旗"),
+            student("谭恩泽"),
+            student("郭一梵"),
+            student("刘坚豪"),
+            student("陈诗伟"),
+            student("王仁杰"),
+            student("杨泽祺"),
+            student("王文威"),
+            student("邓思阳"),
+            student("潘国俊"),
+            student("赖艳鹏"),
+            student("雷昊禧"),
+            student("陈佳浚"),
+            student("王玮璟"),
+            student("梁滔"),
+            student("马家豪"),
+            student("吴凡"),
+            student("樊曦阳"),
+            student("王佳业"),
+            student("孙铭哲"),
+            student("旷恒毅"),
+            student("蒋泽明"),
+            student("林晓东"),
+            student("何泳良"),
+            student("香南斌"),
+            student("李志成"),
+            student("谢嘉欢"),
+            student("谢城"),
+            student("丁汉基"),
+            student("罗仕鑫"),
+            student("黄彬源"),
+            student("吴中其"),
+            student("陈隽淇"),
+            student("李志文"),
+            student("黄树华"),
+            student("王明生")
+        };
+
+        private void sort() {
+            for (int i = 0; i < s.length - 1; i++) {
+                for (int j = 0; j < s.length - i - 1; j++) {
+                    if(s[j].val > s[j + 1].val) {
+                        student tmp = s[j];
+                        s[j] = s[j + 1];
+                        s[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+
+        public void reset() {
+            cnt = 0;
+            Rand rnd = new Rand();
+            for (int i = 0; i < s.length; i++) {
+                s[i].val = rnd.int_range(0, 998244353);
+            }
+            sort();
+        }
+
+        public Students() {
+            for (int i = 0; i < GIRLS; i++) {
+                s[i].ismale = 0;
+            }
+            reset();
+        }
+
+        private void shiftNext() {
+            student tmp = s[0];
+            for (int i = 1; i < s.length; i++) {
+                s[i - 1] = s[i];
+            }
+            s[s.length - 1] = tmp;
+        }
+
+        public string getName(int sex) {
+            if (cnt + 5 >= s.length) {
+                return "请先重置";
+            } else if (sex == 2) {
+                string ret = s[0].name;
+                cnt++;
+                shiftNext();
+                return ret;
+            } else {
+                bool ok = false;
+                for (int i = 0; i + cnt < s.length; i++) {
+                    if (s[i].ismale == sex) {
+                        ok = true;
+                    }
+                }
+                if (ok == false) {
+                    return "请先重置";
+                }
+                while (true) {
+                    if (s[0].ismale != sex) {
+                        shiftNext();
+                    } else {
+                        string ret = s[0].name;
+                        cnt++;
+                        shiftNext();
+                        return ret;
+                    }
+                }
+            }
+            return "发生未知错误";
+        }
+    }
+}
 
