@@ -4,4 +4,5 @@ data/top.bobby285271.stuselect.gschema.xml
 src/window.ui
 src/main.vala
 src/window.vala
+src/student.vala
 

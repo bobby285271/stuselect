@@ -1,6 +1,7 @@
 stuselect_sources = [
   'main.vala',
   'window.vala',
+  'students.vala',
 ]
 
 stuselect_deps = [
