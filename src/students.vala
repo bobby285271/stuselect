@@ -1,4 +1,4 @@
-/* student.vala
+/* students.vala
  *
  * Copyright 2021 Bobby Rong
  *
@@ -19,21 +19,31 @@
 namespace Stuselect {
 
     public class Students : GLib.Object {
+
+        // The number of girls in the student array.
+        private const int GIRLS = 11;
+
+        // The number of names to display in a single line.
+        private const int NAMES = 8;
+
+        // The number of done operations.
+        // Should be reset when cnt exceeds the length of the student array.
+        private int femalecnt;
+        private int malecnt;
+
         private struct student {
-            public string name;
-            public int ismale;
-            public int val;
-            public student (string name) {
+            string name;
+            int ismale;
+            uint val; // Expect a random value, only used in sorting.
+            student (string name) {
                 this.name = name;
                 this.ismale = 1;
                 this.val = 0;
             }
         }
 
-        private int cnt;
-        private const int GIRLS = 11;
-
-        private student?[] s = {
+        private student[] s = {
+            // List of girls, the number of girls should match the variable GIRLS.
             student("姜文婷"),
             student("蔡卓琳"),
             student("黄贝苗"),
@@ -45,6 +55,8 @@ namespace Stuselect {
             student("陈芷茵"),
             student("李晓钰"),
             student("陈晓琪"),
+
+            // List of boys.
             student("李玮楠"),
             student("商汇川"),
             student("沈德增"),
@@ -89,10 +101,91 @@ namespace Stuselect {
             student("王明生")
         };
 
+        public Students() {
+            // ismale should be set only once, before the array is shuffled.
+            // The default value of ismale is already 1, so we only need to deal with girls.
+            for (int i = 0; i < GIRLS; i++) {
+                s[i].ismale = 0;
+            }
+            reset();
+        }
+
+        // Without calling this function, the result will never be duplicate.
+        public void reset() {
+            malecnt = femalecnt = 0;
+            Rand rnd = new Rand();
+            for (int i = 0; i < s.length; i++) {
+                s[i].val = rnd.next_int();
+            }
+            sort();
+        }
+
+        // Returns a list of names from the student array.
+        // sex == 1: returns a list of a random name of boys.
+        // sex == 0: returns a list of a random name of girls.
+        // sex == -1: returns a list of random names.
+        // sex == others: returns an error report.
+        public string getNames(int num, int sex = -1) {
+            if ((sex == 1 && num + malecnt + GIRLS > s.length) ||
+                (sex == 0 && num + femalecnt > GIRLS) ||
+                (sex == -1 && num + malecnt + femalecnt > s.length)) {
+                return "请先重置";
+            }
+            if (sex > 1 || sex < -1 || num < 0) {
+                return "出错";
+            }
+            string ret = "";
+            for (int i = 1; i <= num; i++) {
+                ret += getName(sex);
+                if (i != num) {
+                    ret += (i % NAMES != 0) ? " " : "\n";
+                }
+            }
+            return ret;
+        }
+
+        // Returns a random name from the student array.
+        private string getName(int sex = -1) {
+            if ((sex == 1 && 1 + malecnt + GIRLS > s.length) ||
+                (sex == 0 && 1 + femalecnt > GIRLS) ||
+                (sex == -1 && 1 + malecnt + femalecnt > s.length)) {
+                return "出错";
+            }
+            if (sex == -1) {
+                return update(0);
+            } else if (sex == 1 || sex == 0) {
+                bool ok = false;
+                for (int i = 0; i + malecnt + femalecnt < s.length; i++) {
+                    if (s[i].ismale == sex) {
+                        ok = true;
+                        return update(i);
+                    }
+                }
+                if (ok == false) {
+                    return "出错";
+                }
+            }
+            return "出错";
+        }
+
+        // Update the counter, and perform a shift.
+        private string update(int x) {
+            if (x < 0 || x >= s.length) return "出错";
+            string ret = s[x].name;
+            if (s[x].ismale == 1) {
+                malecnt++;
+            } else {
+                femalecnt++;
+            }
+            shift(x);
+            return ret;
+        }
+
+        // A simple bubble sort, shuffling the array randomly in fact.
         private void sort() {
             for (int i = 0; i < s.length - 1; i++) {
                 for (int j = 0; j < s.length - i - 1; j++) {
-                    if(s[j].val > s[j + 1].val) {
+                    if (s[j].val > s[j + 1].val) {
                         student tmp = s[j];
                         s[j] = s[j + 1];
                         s[j + 1] = tmp;
@@ -101,60 +194,14 @@ namespace Stuselect {
             }
         }
 
-        public void reset() {
-            cnt = 0;
-            Rand rnd = new Rand();
-            for (int i = 0; i < s.length; i++) {
-                s[i].val = rnd.int_range(0, 998244353);
-            }
-            sort();
-        }
-
-        public Students() {
-            for (int i = 0; i < GIRLS; i++) {
-                s[i].ismale = 0;
-            }
-            reset();
-        }
-
-        private void shiftNext() {
-            student tmp = s[0];
-            for (int i = 1; i < s.length; i++) {
+        // Mark s[x] as already selected, move it to the last place of the array.
+        private void shift(int x) {
+            if (x < 0 || x >= s.length) return;
+            student tmp = s[x];
+            for (int i = x + 1; i < s.length; i++) {
                 s[i - 1] = s[i];
             }
             s[s.length - 1] = tmp;
-        }
-
-        public string getName(int sex) {
-            if (cnt + 5 >= s.length) {
-                return "请先重置";
-            } else if (sex == 2) {
-                string ret = s[0].name;
-                cnt++;
-                shiftNext();
-                return ret;
-            } else {
-                bool ok = false;
-                for (int i = 0; i + cnt < s.length; i++) {
-                    if (s[i].ismale == sex) {
-                        ok = true;
-                    }
-                }
-                if (ok == false) {
-                    return "请先重置";
-                }
-                while (true) {
-                    if (s[0].ismale != sex) {
-                        shiftNext();
-                    } else {
-                        string ret = s[0].name;
-                        cnt++;
-                        shiftNext();
-                        return ret;
-                    }
-                }
-            }
-            return "发生未知错误";
         }
     }
 }
