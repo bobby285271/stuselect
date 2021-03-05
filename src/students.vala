@@ -110,7 +110,7 @@ namespace Stuselect {
             reset();
         }
 
-        // Reset the counter. Without calling this function, the result will never be duplicate.
+        // Resets the counter. Without calling this function, the result will never be duplicate.
         public void reset() {
             malecnt = femalecnt = 0;
         }
@@ -149,38 +149,28 @@ namespace Stuselect {
 
         // Returns a random name from the student array which is not chosen yet.
         private string getName(int sex = -1) {
-            if ((sex == 1 && 1 + malecnt + GIRLS > s.length) ||
-                (sex == 0 && 1 + femalecnt > GIRLS) ||
-                (sex == -1 && 1 + malecnt + femalecnt > s.length)) {
-                return "出错";
-            }
-
-            // Do a shuffle every time, so we can handle the situation where the gender selection is updated.
+            // Performs a shuffle every time, so we can handle the situation where the gender selection is updated.
             shuffle(s.length - malecnt - femalecnt);
 
             if (sex == -1) {
                 return update(0);
             } else if (sex == 1 || sex == 0) {
-                bool ok = false;
                 for (int i = 0; i + malecnt + femalecnt < s.length; i++) {
                     if (s[i].ismale == sex) {
-                        ok = true;
                         return update(i);
                     }
-                }
-                if (ok == false) {
-                    return "出错";
                 }
             }
             return "出错";
         }
 
-        // Provide each element with a random number, then perform a bubble sort according to the number.
+        // Provides each element with a random number, then perform a bubble sort according to the number.
         private void shuffle(int len = s.length) {
             Rand rnd = new Rand();
             for (int i = 0; i < len; i++) {
                 s[i].val = rnd.next_int();
             }
+
             for (int i = 0; i < len - 1; i++) {
                 for (int j = 0; j < len - i - 1; j++) {
                     if (s[j].val > s[j + 1].val) {
@@ -192,7 +182,7 @@ namespace Stuselect {
             }
         }
 
-        // Update the counter, and perform a shift.
+        // Updates the counter, and perform a shift.
         private string update(int x) {
             if (x < 0 || x >= s.length) return "出错";
             string ret = s[x].name;
@@ -205,7 +195,7 @@ namespace Stuselect {
             return ret;
         }
 
-        // Mark s[x] as already selected, move it to the last place of the array.
+        // Marks s[x] as already selected, moves it to the last place of the array.
         private void shift(int x) {
             if (x < 0 || x >= s.length) return;
             student tmp = s[x];
