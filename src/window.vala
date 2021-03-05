@@ -29,6 +29,8 @@ namespace Stuselect {
 		Gtk.CheckButton male_check;
 		[GtkChild]
 		Gtk.CheckButton female_check;
+		[GtkChild]
+		Gtk.Entry number;
 
         Students stu = new Students();
 
@@ -36,7 +38,25 @@ namespace Stuselect {
 			Object (application: app);
 
 			start_btn.clicked.connect (() => {
-			    /* TODO */
+			    bool getmale = male_check.get_active();
+			    bool getfemale = female_check.get_active();
+			    string getnum = number.get_text();
+			    int actnum = 0;
+			    for (int i = 0; i < getnum.length; i++) {
+			        actnum *= 10;
+			        actnum += getnum[i] - '0';
+			    }
+			    if (getmale && getfemale) {
+			        label.label = stu.getNames(actnum);
+			    } else if (getmale) {
+			        label.label = stu.getNames(actnum, 1);
+			    } else {
+			        label.label = stu.getNames(actnum, 0);
+			    }
+		    });
+
+		    clear_btn.clicked.connect (() => {
+                stu.reset();
 		    });
 		}
 	}
