@@ -121,6 +121,11 @@ namespace Stuselect {
         // sex == -1: returns a list of random names.
         // sex == others: returns an error report.
         public string getNames(int num, int sex = -1) {
+            if ((sex == 1 && num + GIRLS > s.length) ||
+                (sex == 0 && num > GIRLS) ||
+                (sex == -1 && num > s.length)) {
+                return "数字过大";
+            }
             if ((sex == 1 && num + malecnt + GIRLS > s.length) ||
                 (sex == 0 && num + femalecnt > GIRLS) ||
                 (sex == -1 && num + malecnt + femalecnt > s.length)) {
