@@ -42,16 +42,25 @@ namespace Stuselect {
 			    bool getfemale = female_check.get_active();
 			    string getnum = number.get_text();
 			    int actnum = 0;
+			    bool ok = true;
 			    for (int i = 0; i < getnum.length; i++) {
+			        if (getnum[i] > '9' || getnum[i] < '0) {
+			            ok = false;
+			            break;
+			        }
 			        actnum *= 10;
 			        actnum += getnum[i] - '0';
 			    }
-			    if (getmale && !getfemale) {
-			        label.label = stu.getNames(actnum, 1);
-			    } else if (getfemale && !getmale) {
-			        label.label = stu.getNames(actnum, 0);
+			    if (ok) {
+			        if (getmale && !getfemale) {
+			            label.label = stu.getNames(actnum, 1);
+			        } else if (getfemale && !getmale) {
+			            label.label = stu.getNames(actnum, 0);
+			        } else {
+			            label.label = stu.getNames(actnum);
+			        }
 			    } else {
-			        label.label = stu.getNames(actnum);
+			        label.label = "请输入正整数";
 			    }
 		    });
 

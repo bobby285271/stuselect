@@ -135,7 +135,7 @@ namespace Stuselect {
                 return "出错";
             }
             if (num == 0) {
-                return "请指定人数";
+                return "请输入正整数";
             }
             string ret = "";
             for (int i = 1; i <= num; i++) {
