@@ -46,17 +46,18 @@ namespace Stuselect {
 			        actnum *= 10;
 			        actnum += getnum[i] - '0';
 			    }
-			    if (getmale && getfemale) {
-			        label.label = stu.getNames(actnum);
-			    } else if (getmale) {
+			    if (getmale) {
 			        label.label = stu.getNames(actnum, 1);
-			    } else {
+			    } else if (getfemale) {
 			        label.label = stu.getNames(actnum, 0);
+			    } else {
+			        label.label = stu.getNames(actnum);
 			    }
 		    });
 
 		    clear_btn.clicked.connect (() => {
                 stu.reset();
+                label.label = "女生节快乐";
 		    });
 		}
 	}
