@@ -34,6 +34,8 @@ namespace Stuselect {
 
         Students stu = new Students();
 
+        const string DEFAULT_NUM = "1";
+
 		public Window (Gtk.Application app) {
 			Object (application: app);
 
@@ -41,6 +43,9 @@ namespace Stuselect {
 			    bool getmale = male_check.get_active();
 			    bool getfemale = female_check.get_active();
 			    string getnum = number.get_text();
+
+			    // Set default value as one.
+			    if (getnum.length == 0) getnum = DEFAULT_NUM;
 			    int actnum = 0;
 			    bool ok = true;
 			    for (int i = 0; i < getnum.length; i++) {
