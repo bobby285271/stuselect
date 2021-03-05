@@ -44,7 +44,7 @@ namespace Stuselect {
 			    int actnum = 0;
 			    bool ok = true;
 			    for (int i = 0; i < getnum.length; i++) {
-			        if (getnum[i] > '9' || getnum[i] < '0) {
+			        if (getnum[i] > '9' || getnum[i] < '0') {
 			            ok = false;
 			            break;
 			        }
