@@ -46,9 +46,9 @@ namespace Stuselect {
 			        actnum *= 10;
 			        actnum += getnum[i] - '0';
 			    }
-			    if (getmale) {
+			    if (getmale && !getfemale) {
 			        label.label = stu.getNames(actnum, 1);
-			    } else if (getfemale) {
+			    } else if (getfemale && !getmale) {
 			        label.label = stu.getNames(actnum, 0);
 			    } else {
 			        label.label = stu.getNames(actnum);
