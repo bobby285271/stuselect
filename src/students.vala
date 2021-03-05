@@ -134,6 +134,9 @@ namespace Stuselect {
             if (sex > 1 || sex < -1 || num < 0) {
                 return "出错";
             }
+            if (num == 0) {
+                return "请指定人数";
+            }
             string ret = "";
             for (int i = 1; i <= num; i++) {
                 ret += getName(sex);
