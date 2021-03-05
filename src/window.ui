@@ -4,13 +4,13 @@
   <requires lib="gtk+" version="3.24"/>
   <template class="StuselectWindow" parent="GtkApplicationWindow">
     <property name="can-focus">False</property>
-    <property name="default-width">600</property>
+    <property name="default-width">800</property>
     <property name="default-height">300</property>
     <child>
       <object class="GtkLabel" id="label">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label">软工五班抽号小程序</property>
+        <property name="label">女生节快乐</property>
         <attributes>
           <attribute name="weight" value="bold"/>
           <attribute name="scale" value="2"/>
@@ -21,7 +21,7 @@
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="title" translatable="yes">SCNUSE 1905 抽签</property>
+        <property name="title" translatable="yes">抽签</property>
         <property name="has-subtitle">False</property>
         <property name="show-close-button">True</property>
         <child>
@@ -44,14 +44,15 @@
           </packing>
         </child>
         <child>
-          <object class="GtkCheckButton" id="male_check">
-            <property name="label" translatable="yes">男</property>
+          <object class="GtkEntry" id="number">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
-            <property name="draw-indicator">True</property>
+            <property name="max-length">2</property>
+            <property name="text" translatable="yes">0</property>
+            <property name="input-purpose">number</property>
           </object>
           <packing>
+            <property name="pack-type">end</property>
             <property name="position">2</property>
           </packing>
         </child>
@@ -64,7 +65,21 @@
             <property name="draw-indicator">True</property>
           </object>
           <packing>
+            <property name="pack-type">end</property>
             <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="male_check">
+            <property name="label" translatable="yes">男</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="draw-indicator">True</property>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
