@@ -13,7 +13,7 @@
         <property name="label">女生节快乐</property>
         <attributes>
           <attribute name="weight" value="bold"/>
-          <attribute name="scale" value="2"/>
+          <attribute name="scale" value="4"/>
         </attributes>
       </object>
     </child>
