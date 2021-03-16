@@ -75,10 +75,12 @@ int main()
     a[50].n = "黄树华";
     a[51].n = "王明生";
     a[52].n = "容加林";
-    sort(a + 1, a + 53, cmp);
-    cout << endl << "### Linux 师生交流会正式抽签" << endl;
+    
+    sort(a + 1, a + 52, cmp);
+    cout << endl << "### test" << endl;
     cout << "抽取结果：" << " ";
-    for (int i = 1; i <= 3; i++)
+    cout << "容加林 "; // 学委必须参加
+    for (int i = 1; i <= 5; i++)
         cout << a[i].n << " ";
     cout << endl;
     return 0;
