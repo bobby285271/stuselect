@@ -26,6 +26,8 @@ jobs:
           echo "抽取时间：" >> README.md
           date >> README.md
           echo "" >> README.md
+          git config --global user.email "rjl931189261@126.com"
+          git config --global user.name "Bobby Rong"
           git add -A
           git commit -m "[CI] Upload results, $(date)"
           git log
