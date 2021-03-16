@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ build ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: update
+        run: |
+          ls
+          cat class5.cpp
+          g++ class5.cpp
+          ./a.out >> temp.txt
+          cat temp.txt
+          cat temp.txt >> README.md
+          rm -f temp.txt a.out
+          echo "" >> README.md
+          echo "抽取时间：" >> README.md
+          date >> README.md
+          echo "" >> README.md
+          git add -A
+          git commit -m "[CI] Upload results, $(date)"
+          git log
+          git push build:ci --force
+
