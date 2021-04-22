@@ -77,7 +77,7 @@ int main()
     a[52].n = "容加林";
     
     sort(a + 1, a + 52, cmp);
-    cout << endl << "### test" << endl;
+    cout << endl << "### 人机交互录课名单（正式抽签）" << endl;
     cout << "抽取结果：" << " ";
     for (int i = 1; i <= 4; i++)
         cout << a[i].n << " ";
