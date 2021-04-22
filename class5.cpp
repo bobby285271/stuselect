@@ -77,10 +77,9 @@ int main()
     a[52].n = "容加林";
     
     sort(a + 1, a + 52, cmp);
-    cout << endl << "### 人机交互第一次讨论 - 正式抽签" << endl;
+    cout << endl << "### test" << endl;
     cout << "抽取结果：" << " ";
-    cout << "容加林 "; // 学委必须参加
-    for (int i = 1; i <= 5; i++)
+    for (int i = 1; i <= 4; i++)
         cout << a[i].n << " ";
     cout << endl;
     return 0;
