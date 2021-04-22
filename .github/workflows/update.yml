@@ -19,6 +19,7 @@ jobs:
           cat class5.cpp
           g++ class5.cpp
           ./a.out >> temp.txt
+          cp README.md.template README.md
           cat temp.txt
           cat temp.txt >> README.md
           rm -f temp.txt a.out
