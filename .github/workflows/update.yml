@@ -31,6 +31,6 @@ jobs:
           git add -A
           git commit -m "[skip ci] Upload results, $(date)"
           git log
-          git push https://bobby285271:${CODINGPASSWD}@github.com/bobby285271/stuselect.git build:ci --force
+          git push https://bobby285271:${CODINGPASSWD}@github.com/bobby285271/stuselect.git ci --force
 
 
