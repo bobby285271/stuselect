@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ build ]
+    branches: [ ci ]
 
   workflow_dispatch:
 
@@ -26,10 +26,10 @@ jobs:
           echo "抽取时间：" >> README.md
           date >> README.md
           echo "" >> README.md
-          git config --global user.email "rjl931189261@126.com"
-          git config --global user.name "Bobby Rong"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git add -A
-          git commit -m "[CI] Upload results, $(date)"
+          git commit -m "[skip ci] Upload results, $(date)"
           git log
           git push https://bobby285271:${CODINGPASSWD}@github.com/bobby285271/stuselect.git build:ci --force
 
