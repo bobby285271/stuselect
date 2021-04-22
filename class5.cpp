@@ -76,8 +76,9 @@ int main()
     a[51].n = "王明生";
     a[52].n = "容加林";
     
-    sort(a + 1, a + 52, cmp);
-    cout << endl << "### 人机交互录课名单（正式抽签）" << endl;
+    sort(a + 1, a + 53, cmp);
+    cout << endl << "### 人机交互录课名单（抽签2）" << endl;
+    cout << "> 因忘记将本人加入名单，重抽一下..."
     cout << "抽取结果：" << " ";
     for (int i = 1; i <= 4; i++)
         cout << a[i].n << " ";
