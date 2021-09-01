@@ -75,11 +75,14 @@ int main()
     a[50].n = "黄树华";
     a[51].n = "王明生";
     a[52].n = "容加林";
+    a[53].n = "陈家豪";
+    a[54].n = "张信宇";
+    a[55].n = "胡瀚文";
     
-    sort(a + 1, a + 53, cmp);
-    cout << endl << "### 班主任考核问卷填写（正式抽签）" << endl;
+    sort(a + 1, a + 56, cmp);
+    cout << endl << "### 师生座谈会" << endl;
     cout << "抽取结果：" << " ";
-    for (int i = 1; i <= 15; i++)
+    for (int i = 1; i <= 2; i++)
         cout << a[i].n << " ";
     cout << endl;
     return 0;
