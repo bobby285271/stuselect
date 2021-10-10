@@ -80,9 +80,9 @@ int main()
     a[55].n = "胡瀚文";
     
     sort(a + 1, a + 56, cmp);
-    cout << endl << "### 师生座谈会" << endl;
+    cout << endl << "### 青年教师讲课比赛观众/评委 - 正式抽签" << endl;
     cout << "抽取结果：" << " ";
-    for (int i = 1; i <= 2; i++)
+    for (int i = 1; i <= 3; i++)
         cout << a[i].n << " ";
     cout << endl;
     return 0;
