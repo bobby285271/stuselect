@@ -81,14 +81,14 @@ int main()
     a[55].n = "陈锦川"; a[55].disabled = true;
     
     sort(a + 1, a + 56, cmp);
-    cout << endl << "### 本轮抽签仅用于调试" << endl;
+    cout << endl << "### 综测座谈会非班委抽签" << endl;
     cout << "抽取结果：" << " ";
     int cnt = 0;
     for (int i = 1; i <= 55; i++) {
         if (a[i].disabled == false) {
             cout << a[i].n << " ";
             cnt++;
-            if (cnt == 30) break;
+            if (cnt == 1) break;
         }
     }
     cout << endl;
