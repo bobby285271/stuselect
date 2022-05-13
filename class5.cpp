@@ -90,6 +90,7 @@ int main()
             cnt++;
             if (cnt == 30) break;
         }
+    }
     cout << endl;
     return 0;
 }
