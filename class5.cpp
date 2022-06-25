@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <chrono>
+#include <random>
 
 using namespace std;
 
@@ -19,11 +21,14 @@ int main()
 {
 
     class5 a[60];
-    srand((unsigned)time(NULL));
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    mt19937 rand_num(seed);
     for (int i = 1; i < 60; i++)
     {
-        a[i].m = rand();
+        a[i].m = rand_num();
+        a[i].disabled = false;
     }
+    
     a[1].n = "李玮楠";
     a[2].n = "胡瀚文";
     a[3].n = "邓思阳";
@@ -82,6 +87,9 @@ int main()
     
     sort(a + 1, a + 56, cmp);
     cout << endl << "### 宣讲会抽签" << endl;
+    
+    cout << endl << "> 抱歉，重抽了一次，有些值忘记设置初始值了导致上次的抽签结果人数不对，详见 git log" << endl << endl;
+    
     cout << "抽取结果：" << " ";
     int cnt = 0;
     for (int i = 1; i <= 55; i++) {
