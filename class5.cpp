@@ -5,100 +5,30 @@
 
 using namespace std;
 
-struct class5
-{
-    int m;
-    string n;
-    bool disabled;
-};
+vector<string> group9 = {"陈佳浚", "陈晓琪", "樊曦阳", "雷昊禧", "吴凡", "潘国俊", "罗仕鑫", "李志文", "容加林", "蒋泽明", "刘坚豪", "李玮楠", "黄俊", "旷恒毅", "蔡卓琳", "王文威", "商汇川", "黄树华", "王玮璟", "谢嘉欢", "香南斌", "陈锦川", "曾宇璐", "陈隽淇"};
+vector<string> group10 = {"陈诗伟", "邓思阳", "林芷泳", "胡瀚文", "李志成", "丁汉基", "徐旗", "陈家豪", /*"何泳良",*/ "王凯峰", "陈芷茵", "林晓东", "张信宇", "梁滔", "谭恩泽", "王明生", "马家豪", "郭一梵", "陈佳茵", "沈德增", "谢城", "杨泽祺", "王仁杰", "黄彬源"};
 
-bool cmp(class5 a, class5 b)
-{
-    return a.m > b.m;
-}
+vector<pair<long long, string>> group9_rnk, group10_rnk;
 
 int main()
 {
-
-    class5 a[60];
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     mt19937 rand_num(seed);
-    for (int i = 1; i < 60; i++)
+
+    cout << rand_num();
+
+    for (auto i : group9)
     {
-        a[i].m = rand_num();
-        a[i].disabled = false;
+        group9_rnk.push_back(make_pair(rand_num(), i));
     }
-    
-    a[1].n = "李玮楠";
-    a[2].n = "胡瀚文";
-    a[3].n = "邓思阳";
-    a[4].n = "王佳业";
-    a[5].n = "蔡卓琳";
-    a[6].n = "郭一梵";
-    a[7].n = "杨泽祺";
-    a[8].n = "梁滔";
-    a[9].n = "赖艳鹏";
-    a[10].n = "黄彬源";
-    a[11].n = "谢嘉欢";
-    a[12].n = "林晓东";
-    a[13].n = "雷昊禧";
-    a[14].n = "樊曦阳";
-    a[15].n = "马家豪";
-    a[16].n = "刘坚豪";
-    a[17].n = "王文威";
-    a[18].n = "吴中其";
-    a[19].n = "谢城";
-    a[20].n = "何泳良";
-    a[21].n = "黄贝苗";
-    a[22].n = "黄俊";
-    a[23].n = "商汇川";
-    a[24].n = "陈佳浚";
-    a[55].n = "张信宇";
-    a[26].n = "曾宇璐";
-    a[27].n = "旷恒毅";
-    a[28].n = "李晓芳";
-    a[29].n = "陈隽淇";
-    a[30].n = "吴凡";
-    a[31].n = "丁汉基";
-    a[32].n = "陈晓琪";
-    a[33].n = "香南斌";
-    a[34].n = "沈德增";
-    a[35].n = "徐旗";
-    a[36].n = "林芷泳";
-    a[37].n = "李志成";
-    a[38].n = "王仁杰";
-    a[39].n = "李志文";
-    a[40].n = "王玮璟";
-    a[41].n = "谭恩泽";
-    a[42].n = "潘国俊";
-    a[43].n = "李晓钰";
-    a[44].n = "陈佳茵";
-    a[45].n = "罗仕鑫";
-    a[46].n = "蒋泽明";
-    a[47].n = "邓子曼";
-    a[48].n = "陈芷茵";
-    a[49].n = "王凯峰";
-    a[50].n = "黄树华";
-    a[51].n = "王明生";
-    a[52].n = "容加林";
-    a[53].n = "陈家豪";
-    a[54].n = "陈诗伟";
-    a[55].n = "陈锦川";
-    
-    sort(a + 1, a + 56, cmp);
-    cout << endl << "### 宣讲会抽签" << endl;
-    
-    cout << endl << "> 抱歉，重抽了一次，有些值忘记设置初始值了导致上次的抽签结果人数不对，详见 git log" << endl << endl;
-    
-    cout << "抽取结果：" << " ";
-    int cnt = 0;
-    for (int i = 1; i <= 55; i++) {
-        if (a[i].disabled == false) {
-            cout << a[i].n << " ";
-            cnt++;
-            if (cnt == 3) break;
-        }
+    for (auto i : group10)
+    {
+        group10_rnk.push_back(make_pair(rand_num(), i));
     }
-    cout << endl;
-    return 0;
+    sort(group9_rnk.begin(), group9_rnk.end());
+    sort(group10_rnk.begin(), group10_rnk.end());
+    cout << "\n### 毕设答辩助理 - 抽签\n"
+         << "\n第九组 " << group9_rnk[0].second
+         << "\n第十组 " << group10_rnk[0].second
+         << "\n";
 }
